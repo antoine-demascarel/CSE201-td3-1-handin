@@ -73,7 +73,6 @@ bool simulate_projectile(const double magnitude, const double angle,
   x = 0;
   y = 0;
 
-
   hit_target = false;
   hit_obstacle = false;
   while (y >= 0 && (! hit_target) && (! hit_obstacle)) {
@@ -102,5 +101,29 @@ void merge_telemetry(double **telemetries,
                      double* &telemetry,
                      int &telemetry_current_size,
                      int &telemetry_max_size) {
-  // IMPLEMENT YOUR FUNCTION HERE
+  for (int i=0; i<tot_telemetries;i++){
+      for (int j=0;j<telemetries_sizes[i];j++){
+          telemetry = append_to_array(telemetries[i][j], telemetry, telemetry_current_size, telemetry_max_size);
+      }
+  }
+  for (int i=0; i < telemetry_current_size-3; i+= 3){
+      for (int j=0; j< telemetry_current_size-3-i; j+=3){
+          if (telemetry[j]>telemetry[j+3]){
+              double small1 = telemetry[j+3];
+              double small2 = telemetry[j+4];
+              double small3 = telemetry[j+5];
+              double big1 = telemetry [j];
+              double big2 = telemetry[j+1];
+              double big3 = telemetry[j+2];
+              telemetry[j] = small1;
+              telemetry[j+1] = small2;
+              telemetry[j+2] = small3;
+              telemetry[j+3] = big1;
+              telemetry[j+4] = big2;
+              telemetry[j+5] = big3;
+          }
+      }
+  }
+
+
 }
