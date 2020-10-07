@@ -37,7 +37,8 @@ int main(int argc, char* argv[])
   {
         std::cout << "A better, new initial message" << std::endl;
   }
-  // END OF THE CUSTOM CODE SECTION
+
+  // END OF THE CUSTOM CODE SECTION change extra
 #else
   // RUN THE AUTOMATIC GRADER
   {
